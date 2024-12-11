@@ -2,29 +2,47 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic 8 Ball</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input::placeholder {
+            color: lightgray;
+        }
+        #answer {
+            color: red;
+            font-family: 'Dancing Script', cursive;
+            line-height: 2;
+            margin-top: 20px;
+        }
     </style>
 </head>
 
 <body>
     <h1>The magic 8 ball</h1>
-    <input /><br />
+    <input type="text" placeholder="Ask me anything" /><br />
     <x-magic />
     <script>
-        class Magic8Ball extends HTMLElement{
-            connectedCallback(){
-                this.innerHTML = 
-`
+        class Magic8Ball extends HTMLElement {
+            connectedCallback() {
+                this.innerHTML =
+                    `
     <button id="question">Ask</button>
     <p id="answer"></p>
-`
+`;
                 this.button = document.querySelector("#question");
-                this.button.addEventListener("click", ()=>{
+                this.button.addEventListener("click", () => {
                     const answer = document.querySelector("#answer");
-                    const aAnswers=["yes", "definitely", "no"];
+                    const aAnswers = ["yes", "definitely", "no"];
                     const nAnswer = Math.floor(Math.random() * aAnswers.length);
                     answer.innerHTML = aAnswers[nAnswer];
-                })
+                });
             }
         }
 
